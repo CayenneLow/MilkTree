@@ -5,7 +5,8 @@ class Job:
         self.job_id = -1
         self.title = ""
         self.description = ""
-        self.budget = 0
+        self.budget_max = 0
+        self.budget_min = 0
         self.currency = ""
         self.location = None
         self.skills = []
@@ -35,6 +36,12 @@ class Job:
     def set_userId(self, userId):
         self.userId = userId
 
+    def set_budget_max(self, budget_max):
+        self.budget_max = budget_max
+
+    def set_budget_min(self, budget_min):
+        self.budget_min = budget_min
+
     def add_skill(self, skill):
         self.skills.append(skill)
 
@@ -61,3 +68,9 @@ class Job:
 
     def get_skills(self):
         return self.skills
+
+    def get_budget_max(self):
+        return self.budget_max
+
+    def get_budget_min(self):
+        return self.budget_min

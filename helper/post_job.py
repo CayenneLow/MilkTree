@@ -1,5 +1,5 @@
 from flask import redirect, url_for, session
-#from create_new_job_json import create_new_job_json
+from create_new_job_json import create_new_job_json
 import requests
 
 oauth_uri = 'https://accounts.freelancer-sandbox.com/oauth/authorize'
@@ -12,7 +12,7 @@ client_secret = 'f6e934fbdfde41364ffcf14a6ca5aa991bbfe376414ff3397a9d0ad507d8ecf
 # Posts a project in freelancer.
 def post_job(job):
     # TODO: parse into correct json format ``
-
+    job_json = create_new_job_json(job)
     headers = {'content-type': 'application/json', 'freelancer-oauth-v1': session['access_token']}
     url = 'https://www.freelancer-sandbox.com/api/projects/0.1/projects/'
     
