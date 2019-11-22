@@ -14,38 +14,110 @@
     <div class="card p-5 w-75">
         <form method="POST">
             <div class="form-group">
+                {% if project.get_title() %}
+                <h2>Customize Project - {{project.get_title()}}</h2>
+                {% else %}
                 <h2>Create a New Project</h2>
+                {% endif %}
                 <label for="title">Project Title</label>
-                <input class="form-control" type="text" name="title" />
+                {% if project.get_title() %}
+                <input class="form-control" type="text" name="title" value="{{project.get_title()}}" minlength="5" required />
+                {% else %}
+                <input class="form-control" type="text" name="title" minlength="5"  required/>
+                {% endif %}
                 <label for="description">Description</label>
-                <textarea class="form-control" type="text" name="description" rows="3"></textarea>
+                {% if project.get_desc() %}
+                <textarea class="form-control" type="text" name="description" rows="3" minlength="30" required>{{project.get_desc()}}</textarea>
+                {% else %}
+                <textarea class="form-control" type="text" name="description" rows="3" minlength="30"required></textarea>
+                {% endif %}
                 <label for="location">Location</label>
-                <input class="form-control" type="text" name="location" />
+                <input class="form-control" type="text" name="location" required />
                 <label>Jobs</label>
                 <span class="badge badge-primary" id="new-job-button">
                     <i class="far fa-plus-square"></i>
                     Add Job
                 </span>
+                {% if project.get_jobs() %}
                 <div class="card-deck w-100" id="job-list">
-                    <div class="card w-100" id="job-card-1">
+                    {% for job in project.get_jobs() %}
+                    <div class="card w-100" id="job-card-{{loop.index}}">
                         <label for="jobs" class="card-header w-100">Job</label>
-                        <input type="hidden" value="1" id="numJob" name="nJobs"/>
+                        <input type="hidden" value="1" id="numJob" name="nJobs" />
                         <ul class="list-group list-group-flush">
                             <div class="job-info-box">
                                 <li class="list-group-item">
                                     <label for="role">Role</label>
-                                    <input class="form-control" type="text" name="1-role" id="role"/>
+                                    <input class="form-control" type="text" name="{{loop.index}}-role"  minlength="5" id="role"
+                                        value="{{job.get_title()}}" required/>
                                 </li>
                                 <li class="list-group-item">
                                     <label for="description">Description</label>
-                                    <textarea class="form-control" type="text" name="1-description" id="description"></textarea>
+                                    <textarea class="form-control" type="text" name="{{loop.index}}-description"
+                                        id="description" minlength="30" required></textarea>
                                 </li>
                                 <li class="list-group-item">
                                     <label for="budget" id="budget-label" class="font-weight-bold">Budget</label><br>
                                     <label for="budget-min">Min</label>
-                                    <input class="form-control" type="number" name="1-budget-min" id="budget-min"/>
+                                    <input class="form-control" type="number" name="{{loop.index}}-budget-min"
+                                        id="budget-min" required/>
                                     <label for="budget-max">Max</label>
-                                    <input class="form-control" type="number" name="1-budget-max" id="budget-max"/>
+                                    <input class="form-control" type="number" name="{{loop.index}}-budget-max"
+                                        id="budget-max" required/>
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="currency">Currency</label>
+                                    <select name="{{loop.index}}-currency" id="currency" class="custom-select" required>
+                                        {% for curr in currencies %}
+                                        <option value={{curr}}>{{curr}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="skills">Skills</label>
+                                    <ul class="list-inline mb-3" id="skill-results">
+                                        <li class="badge badge-warning list-inline-item">{{job.get_skills()[0]}}</li>
+                                    </ul>
+                                    <select name="skills" id="{{loop.index}}-select-skills" style="width: 100%;" required>
+                                        <option value='0'>Select Skill</option>
+                                        {% for skill in skills %}
+                                        {% if skill == job.get_skills()[0] %}
+                                        <option value={{skill}} selected>{{skill}}</option>
+                                        {% else %}
+                                        <option value={{skill}}>{{skill}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                    <input type="hidden" id="hidden-skills" name="{{loop.index}}-hidden-skills"
+                                        value="{{job.get_skills()[0]}}" />
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="card-deck w-100" id="job-list">
+                    <div class="card w-100" id="job-card-1">
+                        <label for="jobs" class="card-header w-100">Job</label>
+                        <input type="hidden" value="1" id="numJob" name="nJobs" />
+                        <ul class="list-group list-group-flush">
+                            <div class="job-info-box">
+                                <li class="list-group-item">
+                                    <label for="role">Role</label>
+                                    <input class="form-control" type="text" name="1-role" id="role" />
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="description">Description</label>
+                                    <textarea class="form-control" type="text" name="1-description"
+                                        id="description"></textarea>
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="budget" id="budget-label" class="font-weight-bold">Budget</label><br>
+                                    <label for="budget-min">Min</label>
+                                    <input class="form-control" type="number" name="1-budget-min" id="budget-min" />
+                                    <label for="budget-max">Max</label>
+                                    <input class="form-control" type="number" name="1-budget-max" id="budget-max" />
                                 </li>
                                 <li class="list-group-item">
                                     <label for="currency">Currency</label>
@@ -64,15 +136,17 @@
                                         <option value={{skill}}>{{skill}}</option>
                                         {% endfor %}
                                     </select>
-                                    <input type="hidden" id="hidden-skills" name="1-hidden-skills" value=""/>
+                                    <input type="hidden" id="hidden-skills" name="1-hidden-skills" value="" />
                                 </li>
                             </div>
                         </ul>
                     </div>
                 </div>
+                {% endif %}
                 <br />
 
-                <input type="submit" style="margin-top:20px;" class="submit-donate" value="Submit" />
+                <input type="submit" style="margin-top:20px;" class="form-control btn-primary submit-donate"
+                    value="Submit" />
             </div>
         </form>
     </div>
