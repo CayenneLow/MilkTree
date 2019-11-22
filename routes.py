@@ -63,6 +63,8 @@ def utility_functions():
 @app.route('/create-project', methods=['GET', 'POST'])
 def create_project(title="", desc="", location=""):
     project = Project(title, desc, system().get_n_projects())
+    currency_result = get_currencies()
+    skills_result = get_skills()
     if (request.method == "POST"):
         title = request.form['title']
         desc = request.form['description']
@@ -104,10 +106,9 @@ def create_project(title="", desc="", location=""):
     else:
         project.set_location(location)
         system().add_project(project)
-    currency_result = get_currencies()
     for currency in currency_result['currencies']:
         currencies.append(currency['code'])
-    skills_result = get_skills()
+
     for skill in skills_result:
         skill_names.append(skill['name'])
     return render_template('create_project.html', project=project, jobs = project.get_jobs(), currencies=currencies, skills=skill_names, njobs = n_jobs)

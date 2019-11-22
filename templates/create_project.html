@@ -21,18 +21,18 @@
                 {% endif %}
                 <label for="title">Project Title</label>
                 {% if project.get_title() %}
-                <input class="form-control" type="text" name="title" value="{{project.get_title()}}" />
+                <input class="form-control" type="text" name="title" value="{{project.get_title()}}" minlength="5" required />
                 {% else %}
-                <input class="form-control" type="text" name="title" />
+                <input class="form-control" type="text" name="title" minlength="5"  required/>
                 {% endif %}
                 <label for="description">Description</label>
                 {% if project.get_desc() %}
-                <textarea class="form-control" type="text" name="description" rows="3">{{project.get_desc()}}</textarea>
+                <textarea class="form-control" type="text" name="description" rows="3" minlength="30" required>{{project.get_desc()}}</textarea>
                 {% else %}
-                <textarea class="form-control" type="text" name="description" rows="3"></textarea>
+                <textarea class="form-control" type="text" name="description" rows="3" minlength="30"required></textarea>
                 {% endif %}
                 <label for="location">Location</label>
-                <input class="form-control" type="text" name="location" />
+                <input class="form-control" type="text" name="location" required />
                 <label>Jobs</label>
                 <span class="badge badge-primary" id="new-job-button">
                     <i class="far fa-plus-square"></i>
@@ -48,26 +48,26 @@
                             <div class="job-info-box">
                                 <li class="list-group-item">
                                     <label for="role">Role</label>
-                                    <input class="form-control" type="text" name="{{loop.index}}-role" id="role"
-                                        value="{{job.get_title()}}" />
+                                    <input class="form-control" type="text" name="{{loop.index}}-role"  minlength="5" id="role"
+                                        value="{{job.get_title()}}" required/>
                                 </li>
                                 <li class="list-group-item">
                                     <label for="description">Description</label>
                                     <textarea class="form-control" type="text" name="{{loop.index}}-description"
-                                        id="description"></textarea>
+                                        id="description" minlength="30" required></textarea>
                                 </li>
                                 <li class="list-group-item">
                                     <label for="budget" id="budget-label" class="font-weight-bold">Budget</label><br>
                                     <label for="budget-min">Min</label>
                                     <input class="form-control" type="number" name="{{loop.index}}-budget-min"
-                                        id="budget-min" />
+                                        id="budget-min" required/>
                                     <label for="budget-max">Max</label>
                                     <input class="form-control" type="number" name="{{loop.index}}-budget-max"
-                                        id="budget-max" />
+                                        id="budget-max" required/>
                                 </li>
                                 <li class="list-group-item">
                                     <label for="currency">Currency</label>
-                                    <select name="{{loop.index}}-currency" id="currency" class="custom-select">
+                                    <select name="{{loop.index}}-currency" id="currency" class="custom-select" required>
                                         {% for curr in currencies %}
                                         <option value={{curr}}>{{curr}}</option>
                                         {% endfor %}
@@ -78,7 +78,7 @@
                                     <ul class="list-inline mb-3" id="skill-results">
                                         <li class="badge badge-warning list-inline-item">{{job.get_skills()[0]}}</li>
                                     </ul>
-                                    <select name="skills" id="{{loop.index}}-select-skills" style="width: 100%;">
+                                    <select name="skills" id="{{loop.index}}-select-skills" style="width: 100%;" required>
                                         <option value='0'>Select Skill</option>
                                         {% for skill in skills %}
                                         {% if skill == job.get_skills()[0] %}
