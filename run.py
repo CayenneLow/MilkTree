@@ -4,4 +4,4 @@ from routes import app
 
 if __name__ == '__main__':
     # SIGINT to stop (Ctrl + C)
-    app.run(ssl_context='adhoc')
+    app.run(debug=True, ssl_context='adhoc')
