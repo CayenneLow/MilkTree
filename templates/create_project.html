@@ -40,26 +40,30 @@
                                     <textarea class="form-control" type="text" name="1-description" id="description"></textarea>
                                 </li>
                                 <li class="list-group-item">
-                                    <label for="budget" id="budget-label">Budget</label>
-                                    <input class="col-md-4 budget-inline form-control" type="number" name="1-budget-min" id="budget-min"/>
-                                    <span class="col-md-4 budget-inline">to</span>
-                                    <input class="col-md-4 budget-inline form-control" type="number" name="1-budget-max" id="budget-max"/>
+                                    <label for="budget" id="budget-label" class="font-weight-bold">Budget</label><br>
+                                    <label for="budget-min">Min</label>
+                                    <input class="form-control" type="number" name="1-budget-min" id="budget-min"/>
+                                    <label for="budget-max">Max</label>
+                                    <input class="form-control" type="number" name="1-budget-max" id="budget-max"/>
                                 </li>
-                                <label for="currency">Currency</label>
-                                <select name="currency" id="select-currency" class="custom-select">
-                                    {% for curr in currencies %}
-                                    <option value={{curr}}>{{curr}}</option>
-                                    {% endfor %}
-                                </select>
-                                </br />
-                                <label for="skills">Skills</label>
-                                <div id="skill-results"></div>
-                                <select name="skills" id="1-select-skills" style="width: 100%;">
-                                    <option value='0'>Select Skill</option>
-                                    {% for skill in skills %}
-                                    <option value={{skill}}>{{skill}}</option>
-                                    {% endfor %}
-                                </select>
+                                <li class="list-group-item">
+                                    <label for="currency">Currency</label>
+                                    <select name="currency" id="select-currency" class="custom-select">
+                                        {% for curr in currencies %}
+                                        <option value={{curr}}>{{curr}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </li>
+                                <li class="list-group-item">
+                                    <label for="skills">Skills</label>
+                                    <div id="skill-results"></div>
+                                    <select name="skills" id="1-select-skills" style="width: 100%;">
+                                        <option value='0'>Select Skill</option>
+                                        {% for skill in skills %}
+                                        <option value={{skill}}>{{skill}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </li>
                             </div>
                         </ul>
                     </div>

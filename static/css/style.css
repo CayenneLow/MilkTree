@@ -3,6 +3,10 @@ html, body {
     background-color: rgb(175, 205, 232);
 }
 
+#job-list .card {
+    border-width:2px;
+}
+
 .container {
     height: 100%;
     width:50%;
@@ -22,10 +26,6 @@ html, body {
 
 #new-job-button {
     cursor: pointer;
-}
-
-.budget-inline {
-    display: inline;
 }
 
 #budget-label {
