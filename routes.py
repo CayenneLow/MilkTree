@@ -62,20 +62,7 @@ def utility_functions():
 
 @app.route('/create-project', methods=['GET', 'POST'])
 def create_project(title="", desc="", location=""):
-    n_jobs = 0
     project = Project(title, desc, system().get_n_projects())
-    project.set_location(location)
-    system().add_project(project)
-    currency_result = get_currencies()
-    currencies = []
-    for currency in currency_result['currencies']:
-        currencies.append(currency['code'])
-
-    skills_result = get_skills()
-    skill_names = []
-    for skill in skills_result:
-        skill_names.append(skill['name'])
-
     if (request.method == "POST"):
         title = request.form['title']
         desc = request.form['description']
@@ -107,7 +94,24 @@ def create_project(title="", desc="", location=""):
             i += 1
         return redirect(url_for("dashboard"))
 
-    return render_template('create_project.html', jobs = project.get_jobs(), currencies=currencies, skills=skill_names, njobs = n_jobs)
+    currencies = []
+    skill_names = []
+    n_jobs = 0
+    id = request.args.get('id')
+    if (id is not None):
+        project = system().find_package(id)
+        print(project)
+    else:
+        project.set_location(location)
+        system().add_project(project)
+        currency_result = get_currencies()
+        for currency in currency_result['currencies']:
+            currencies.append(currency['code'])
+
+    skills_result = get_skills()
+    for skill in skills_result:
+        skill_names.append(skill['name'])
+    return render_template('create_project.html', project=project, jobs = project.get_jobs(), currencies=currencies, skills=skill_names, njobs = n_jobs)
 
 # Users who hit this endpoint will be redirected to the authorization prompt
 @app.route('/authorize')
