@@ -41,6 +41,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
             return;
         }
 
+        var cur_value = $("#hidden-results").val();
+        console.log(cur_value);
+        $("#hidden-results").val(cur_value + "|" + skill);
         skillElement = document.createElement("p")
         skillElement.innerText = skill;
         $("#skill-results").append(skillElement);
