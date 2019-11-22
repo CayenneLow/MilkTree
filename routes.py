@@ -54,3 +54,7 @@ def clear_token():
     session.pop("access_token", None)
     session.pop("refresh_token", None)
     return redirect(url_for("index"))
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
