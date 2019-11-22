@@ -96,8 +96,8 @@ def create_project(title="", desc="", location=""):
             skill_id_list = []
             for skill in skill_list:
                 skill_id_list.append(skill)
-            curr_id = get_curr_id(curr)
             new_job = Job(i, role, job_desc, budget, curr_id, skill_id_list)
+            post_job(new_job)
             project.add_job(new_job)
         
 
