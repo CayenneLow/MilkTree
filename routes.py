@@ -39,18 +39,18 @@ def get_skill_id(skill, skills_result):
         if skill_i['name'] is skill:
             return skill_i['id']
 
-
-
+@app.before_request
+def before_request():
+    if request.endpoint != 'login' and request.endpoint != 'index' and request.endpoint != 'handle_authorize' and request.endpoint != 'authorized' and request.endpoint != 'clear_token':
+        if 'access_token' not in session:
+            return redirect(url_for('login'))
 
 @app.route('/')
 def index():
     if 'access_token' in session:
-        username = session['access_token']
-        return ('Logged in as ' + username + '<br>' + \
-         "<b><a href = '/clear'>click here to log out</a></b>"
-         "<b><a href = '/testAPI'>click here to test api</a></b>")
+        return redirect(url_for('dashboard'))
     else:
-        return render_template('base.html')
+        return render_template('index.html')
 
 
 @app.context_processor
@@ -120,12 +120,11 @@ def authorized():
     headers = {'content-type': 'application/x-www-form-urlencoded'}
 
     response = requests.request("POST", url, data=payload, headers=headers)
-    # print(response)
     response = response.json()
 
     session["access_token"] = (response["access_token"])
     session["refresh_token"] = (response["refresh_token"])
-    return redirect(url_for("index"))
+    return redirect(url_for("dashboard"))
 
 @app.route("/clear")
 def clear_token():
@@ -151,3 +150,10 @@ def testAPI():
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
+
+@app.route('/projects/<id>')
+def singleProject(id):
+    #code = request.args.get('code')
+    # print(id)
+    return render_template('individualProject.html', id=id)
+
