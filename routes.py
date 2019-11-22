@@ -71,13 +71,13 @@ def create_project(title="", desc="", location=""):
     currencies = []
     for currency in currency_result['currencies']:
         currencies.append(currency['code'])
-        
+
     skills_result = get_skills()
     skills = []
     for skill in skills_result:
         skills.append(skill['name'])
-        
-    
+
+
 
     if (request.method == "POST"):
         title = request.form['title']
@@ -99,9 +99,7 @@ def create_project(title="", desc="", location=""):
             curr_id = get_curr_id(curr)
             new_job = Job(i, role, job_desc, budget, curr_id, skill_id_list)
             project.add_job(new_job)
-        
-
-
+            
     return render_template('create_project.html', jobs = project.get_jobs(), currencies=currencies, skills=skills, njobs = n_jobs)
 
 # Users who hit this endpoint will be redirected to the authorization prompt
