@@ -19,14 +19,16 @@ client_secret = 'ab7f65247142d1e36665020bb91dfad611b5152944b44c2e7a6ce8908356d67
 def system():
     return app.config['SYSTEM']
 
+@app.before_request
+def before_request():
+    if request.endpoint != 'login' and request.endpoint != 'index' and request.endpoint != 'handle_authorize' and request.endpoint != 'authorized' and request.endpoint != 'clear_token':
+        if 'access_token' not in session:
+            return redirect(url_for('login'))
 
 @app.route('/')
 def index():
     if 'access_token' in session:
-        username = session['access_token']
-        return ('Logged in as ' + username + '<br>' + \
-         "<b><a href = '/clear'>click here to log out</a></b>"
-         "<b><a href = '/testAPI'>click here to test api</a></b>")
+        return redirect(url_for('dashboard'))
     else:
         return render_template('index.html')
 
