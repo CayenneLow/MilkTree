@@ -60,7 +60,6 @@ def create_project(title="", desc="", location=""):
     project.set_location(location)
     project.set_jobs(jobs)
     system().add_project(project)
-
     return render_template('create_project.html', jobs = project.get_jobs(), njobs = n_jobs)
 
 # Users who hit this endpoint will be redirected to the authorization prompt
