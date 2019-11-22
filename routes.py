@@ -28,7 +28,7 @@ def index():
          "<b><a href = '/clear'>click here to log out</a></b>"
          "<b><a href = '/testAPI'>click here to test api</a></b>")
     else:
-        return render_template('base.html')
+        return render_template('index.html')
 
 
 @app.context_processor
