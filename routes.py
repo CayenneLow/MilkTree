@@ -30,13 +30,13 @@ def get_currencies():
     return app.config['CURRENCIES']
 
 def get_curr_id(curr, currency_result):
-    for currency in currency_result:
+    for currency in currency_result['currencies']:
         if currency['code'] is curr:
             return currency['id']
 
 def get_skill_id(skill, skills_result):
     for skill_i in skills_result:
-        if skill_i['name'] is skill:
+        if skill_i['name'] == skill:
             return skill_i['id']
 
 @app.before_request
@@ -72,32 +72,41 @@ def create_project(title="", desc="", location=""):
         currencies.append(currency['code'])
 
     skills_result = get_skills()
-    skills = []
+    skill_names = []
     for skill in skills_result:
-        skills.append(skill['name'])
+        skill_names.append(skill['name'])
 
     if (request.method == "POST"):
         title = request.form['title']
         desc = request.form['description']
         location = request.form['location']
+        print(request.form)
+        i = 1
         # Populate jobs for the project.
-        for i in range(1, n_jobs):
+        for i in range(1, int(request.form['nJobs']) + 1):
+            print("i: " + str(i) + ", len: " + str(len(request.form)) + "\n")
+            print("hi")
             num_string = str(i)
             role = request.form[num_string + "-role"]
             job_desc = request.form[num_string + "-description"]
-            budget = request.form[num_string + "-budget-price"]
-            curr = request.form[num_string + "-budget-currency"]
-            skills = request.form[num_string + "-skills"]
+            budget_min = float(request.form[num_string + "-budget-min"])
+            budget_max= float(request.form[num_string + "-budget-max"])
+            curr = request.form[num_string + "-currency"]
+            skills = request.form["hidden-skills"]
             curr_id = get_curr_id(curr, currency_result)
-            skill_list = skills.split(",")
+            skill_list = skills.split("|")
+            skill_list = skill_list[1:]
             skill_id_list = []
             for skill in skill_list:
-                skill_id_list.append(skill)
-            new_job = Job(i, role, job_desc, budget, curr_id, skill_id_list)
+                entry = {"id": get_skill_id(skill, skills_result)}
+                skill_id_list.append(entry)
+            new_job = Job(i, role, job_desc, budget_min, budget_max, curr_id, skill_id_list)
+            new_job.set_skills(skill_id_list)
             post_job(new_job)
             project.add_job(new_job)
+            i += 1
 
-    return render_template('create_project.html', jobs = project.get_jobs(), currencies=currencies, skills=skills, njobs = n_jobs)
+    return render_template('create_project.html', jobs = project.get_jobs(), currencies=currencies, skills=skill_names, njobs = n_jobs)
 
 # Users who hit this endpoint will be redirected to the authorization prompt
 @app.route('/authorize')

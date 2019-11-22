@@ -29,6 +29,7 @@
                 <div class="card-deck w-100" id="job-list">
                     <div class="card w-100" id="job-card-1">
                         <label for="jobs" class="card-header w-100">Job</label>
+                        <input type="hidden" value="1" id="numJob" name="nJobs"/>
                         <ul class="list-group list-group-flush">
                             <div class="job-info-box">
                                 <li class="list-group-item">
@@ -48,7 +49,7 @@
                                 </li>
                                 <li class="list-group-item">
                                     <label for="currency">Currency</label>
-                                    <select name="currency" id="select-currency" class="custom-select">
+                                    <select name="1-currency" id="currency" class="custom-select">
                                         {% for curr in currencies %}
                                         <option value={{curr}}>{{curr}}</option>
                                         {% endfor %}
@@ -63,7 +64,7 @@
                                         <option value={{skill}}>{{skill}}</option>
                                         {% endfor %}
                                     </select>
-                                    <input type="hidden" id="hidden-results" name="hidden-results" value=""/>
+                                    <input type="hidden" id="hidden-skills" name="hidden-skills" value=""/>
                                 </li>
                             </div>
                         </ul>

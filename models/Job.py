@@ -1,16 +1,16 @@
 class Job:
     def __init__(self, job_id = -1, title = "", description = "", \
-                    budget = 0, currency = "", location = None, \
+                    budget_min = 0, budget_max = 0, currency = "", location = None, \
                     skills = [], userId = 0):
-        self.job_id = -1
-        self.title = ""
-        self.description = ""
-        self.budget_max = 0
-        self.budget_min = 0
-        self.currency = ""
-        self.location = None
-        self.skills = []
-        self.userId = 0 #freelancer user id
+        self.job_id = job_id
+        self.title = title
+        self.description = description
+        self.budget_min = budget_min
+        self.budget_max = budget_max
+        self.currency = currency
+        self.location = location
+        self.skills = skills
+        self.userId = userId #freelancer user id
 
     def set_job_id(self, id):
         self.id = id
@@ -23,9 +23,6 @@ class Job:
 
     def set_description(self, description):
         self.description = description
-
-    def set_budget(self, budget):
-        self.budget = budget
 
     def set_currency(self, currency):
         self.currency = currency
@@ -45,6 +42,9 @@ class Job:
     def add_skill(self, skill):
         self.skills.append(skill)
 
+    def set_skills(self, skills):
+        self.skills = skills
+
     def remove_skill(self, skill):
         self.skills.remove(skill)
 
@@ -53,9 +53,6 @@ class Job:
 
     def get_description(self):
         return self.description
-
-    def get_budget(self):
-        return self.budget
 
     def get_currency(self):
         return self.currency

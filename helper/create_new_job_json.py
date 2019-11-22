@@ -14,8 +14,9 @@ def create_new_job_json(job):
             "minimum": job.get_min_budget(),
             "maximum": job.get_max_budget(),
         },
-        "jobs": job.get_skills # skills 
+        "jobs": job.get_skills() # skills 
         
     }
 
-    return json.dumps(job_dict)
+    json_dict = json.dumps(job_dict)
+    return json_dict
