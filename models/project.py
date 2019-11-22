@@ -6,7 +6,7 @@ class Project:
         self.title = title
         self.desc = desc
         self.location = None
-        self.jobs = []
+        self.jobs = [None]
 
     def get_proj_id(self):
         return self.id 
