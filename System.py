@@ -1,4 +1,4 @@
-from models.Project import Project
+from models.project import Project
 
 class System:
     def __init__(self):
