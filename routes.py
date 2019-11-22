@@ -17,7 +17,7 @@ prompt = 'select_account consent'
 advanced_scopes = '1 2'
 client_secret = 'ab7f65247142d1e36665020bb91dfad611b5152944b44c2e7a6ce8908356d67f1753a1544da4bc041715b50681688ec401d1e3dba9001420dc3e3f888a13332c'
 
-# Gets system. 
+# Gets system.
 def system():
     return app.config['SYSTEM']
 
@@ -148,11 +148,11 @@ def testAPI():
     headers = {'content-type': 'application/json', 'freelancer-oauth-v1': session['access_token']}
     url = 'https://www.freelancer-sandbox.com/api/projects/0.1/projects/'
     payload = '{"title": "Fix my PHP website",  "description": "I wrote a small website in PHP but it does not work. I need someone to fix it.",  "currency": {"id": 3},"budget": {"minimum": 250, "maximum": 500},"jobs": [{"id": 3},{"id": 17}]}'
-    
+
     response = requests.request("POST", url, data=payload, headers=headers).json()
     print(response)
     return redirect(url_for("index"))
-    
+
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
