@@ -23,3 +23,11 @@ html, body {
 #new-job-button {
     cursor: pointer;
 }
+
+.budget-inline {
+    display: inline;
+}
+
+#budget-label {
+    margin-right: 10px;
+}
