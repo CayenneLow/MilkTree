@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
     $("[id$=select-skills").select2({width:'style'});
     
-    $("#" + numJobs + "-select-skills").change(function(e) {
+    $("[id$=select-skills").change(function(e) {
         dropDown(e);
     });
     
