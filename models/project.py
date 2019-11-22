@@ -7,30 +7,30 @@ class Project:
         self.location = None
         self.jobs = []
 
-    def get_title():
+    def get_title(self):
         return self.title
     
-    def set_title(title):
+    def set_title(self, title):
         self.title = title
     
-    def get_desc():
+    def get_desc(self):
         return self.desc
     
-    def set_desc(desc):
+    def set_desc(self, desc):
         self.desc = desc 
     
-    def get_location():
+    def get_location(self):
         return self.location
 
-    def set_location(location):
+    def set_location(self, location):
         self.location = location 
     
-    def get_jobs():
+    def get_jobs(self):
         return self.jobs 
     
-    def add_job(job):
+    def add_job(self, job):
         self.jobs.append(job)
     
-    def delete_job(job):
+    def delete_job(self, job):
         self.jobs.remove(job)
     
