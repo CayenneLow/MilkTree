@@ -41,4 +41,4 @@ def post_job(job):
 
     response = requests.request("POST", url, data=job_json, headers=headers).json()
     print(response)
-    return
+    return response
