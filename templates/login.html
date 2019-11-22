@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<div class = "row h-100 w-100 align-items-center">
+  <div class = "col h-75">
+    <h1 class ="container p-5 h-100 w-100 text-center">
+      <div class="mb-3">Login to Skillbox with Freelancer</div>
+      <div class = "loginBannerContainer w-50 m-auto p-3">
+        <a href="/authorize">
+          <img id="loginBanner" class="img-fluid" src="{{ url_for('static', filename='images/freelancerLogo.png') }}" alt="Login with Freelancer"/>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
