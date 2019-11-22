@@ -18,7 +18,7 @@ advanced_scopes = '1 2'
 client_secret = 'ab7f65247142d1e36665020bb91dfad611b5152944b44c2e7a6ce8908356d67f1753a1544da4bc041715b50681688ec401d1e3dba9001420dc3e3f888a13332c'
 
 # slack stuff
-oauth_token = "xoxp-833602236162-846395388917-845932523860-ec230dbd17792319cea682d78abdb604"
+slack_oauth_token = "xoxp-833602236162-846395388917-845932523860-ec230dbd17792319cea682d78abdb604"
 
 # Gets system.
 def system():
@@ -177,3 +177,14 @@ def singleProject(id):
     #code = request.args.get('code')
     # print(id)
     return render_template('individualProject.html', id=id)
+
+@app.route('/createChannel/', methods=['GET', 'POST'])
+def createChannel():
+    if request.method == "POST":
+        channelName = request.args.get("channelName")
+        url = "https://slack.com/api/groups.create?token=" + slack_oauth_token
+        url += "&name=" + channelName
+        response = requests.request("POST", url)
+        print(response)
+
+
