@@ -15,3 +15,7 @@ html, body {
     border-width: 2px;
     border-radius: 6px;
 }
+
+.projectsContainer{
+    width:50%;
+}
