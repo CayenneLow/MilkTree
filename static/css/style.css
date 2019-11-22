@@ -1,6 +1,8 @@
 html, body {
     height: 100%;
     background-color: rgb(175, 205, 232);
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 300;
 }
 
 #job-list .card {
