@@ -6,4 +6,4 @@ from System import System
 if __name__ == '__main__':
     app.config['SYSTEM'] = System()
     # SIGINT to stop (Ctrl + C)
-    app.run(debug=True, port=4000)
+    app.run(ssl_context='adhoc')
