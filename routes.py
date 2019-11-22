@@ -88,7 +88,7 @@ def authorized():
 
     session["access_token"] = (response["access_token"])
     session["refresh_token"] = (response["refresh_token"])
-    return redirect(url_for("index"))
+    return redirect(url_for("dashboard"))
 
 @app.route("/clear")
 def clear_token():
@@ -115,9 +115,9 @@ def testAPI():
 def dashboard():
     return render_template('dashboard.html')
 
-@app.route('/projects')
-def singleProject():
+@app.route('/projects/<id>')
+def singleProject(id):
     #code = request.args.get('code')
     # print(id)
-    return render_template('individualProject.html')
+    return render_template('individualProject.html', id=id)
 
