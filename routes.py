@@ -24,7 +24,8 @@ def index():
     if 'access_token' in session:
         username = session['access_token']
         return ('Logged in as ' + username + '<br>' + \
-         "<b><a href = '/clear'>click here to log out</a></b>")
+         "<b><a href = '/clear'>click here to log out</a></b>"
+         "<b><a href = '/testAPI'>click here to test api</a></b>")
     else:
         return render_template('base.html')
 
@@ -100,6 +101,16 @@ def clear_token():
 def login():
     return render_template('login.html')
 
+@app.route('/testAPI')
+def testAPI():
+    headers = {'content-type': 'application/json', 'freelancer-oauth-v1': session['access_token']}
+    url = 'https://www.freelancer-sandbox.com/api/projects/0.1/projects/'
+    payload = '{"title": "Fix my PHP website",  "description": "I wrote a small website in PHP but it does not work. I need someone to fix it.",  "currency": {"id": 3},"budget": {"minimum": 250, "maximum": 500},"jobs": [{"id": 3},{"id": 17}]}'
+    
+    response = requests.request("POST", url, data=payload, headers=headers).json()
+    print(response)
+    return redirect(url_for("index"))
+    
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
