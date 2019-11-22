@@ -21,6 +21,10 @@ html, body {
 }
 
 .projectsContainer{
+    width:75%;
+}
+
+.packagesContainer{
     width:50%;
 }
 
@@ -30,4 +34,8 @@ html, body {
 
 #budget-label {
     margin-right: 10px;
+}
+
+.card-img-top {
+    max-height:192px;
 }
