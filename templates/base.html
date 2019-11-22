@@ -30,6 +30,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
+            {% if session['access_token'] %}
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="{{url_for('dashboard')}}">Dashboard <span
@@ -39,13 +40,17 @@
                     <a href="{{url_for('create_project')}}" class="btn btn-success nav-link p-2">Create New Project</a>
                 </li>
             </ul>
+            {% endif %}
         </div>
-        <a href="{{url_for('login')}}" class="mx-2 btn btn-secondary navbar-text text-white">
-            Login 
-        </a>
+        {% if session['access_token'] %}
         <a href="{{url_for('clear_token')}}" class="mx-2 btn btn-secondary navbar-text text-white">
            Logout 
         </a>
+        {% else %}
+        <a href="{{url_for('login')}}" class="mx-2 btn btn-secondary navbar-text text-white">
+            Login 
+        </a>
+        {% endif %}
     </nav>
     {% endblock %}
 </body>
