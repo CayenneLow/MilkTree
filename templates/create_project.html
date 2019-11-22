@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% block title %}New Project{% endblock %}
 {% block head %}
-{{ super() }}
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  {{ super() }}
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 {% endblock %}
 {% block content %}
 {{super()}}
@@ -29,16 +33,19 @@
                             <label for="budget">Budget</label>
                             <input type="number" name="{{jobs|length|string}}-budget" />
                             <label for="currency">Currency</label>
-                            <select name="currency">
-                              <option value="AUD">AUD</option>
-                              <option value="USD">USD</option>
-                              <option value="EUR">EUR</option>
+                            <select name="currency" id="select-currency">
+                            {% for curr in currencies %}
+                                <option value={{curr}}>{{curr}}</option>
+                            {% endfor %}
                             </select>
+                            </br/>
                             <label for="skills">Skills</label>
-                            <select name="skills">
-                              <option value="AUD">SEO</option>
-                              <option value="USD">Digital Marketing</option>
-                              <option value="EUR">Front-end web developemtn</option>
+                            <div id="skill-results"></div>
+                            <select name="skills" id="select-skills" class="js-select-skill">
+                                <option value='0'>Select Skill</option>
+                            {% for skill in skills %}
+                                <option value={{skill}}>{{skill}}</option>
+                            {% endfor %}
                             </select>
                         </div>
                     </li>

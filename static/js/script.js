@@ -33,4 +33,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     newJobButton.addEventListener("click", addJobBox);
 
+    $("#select-skills").select2();
+
+    $("#select-skills").on('change', function() {
+        console.log("IN HERE");
+        var skill = $("#select-skills option:selected").text();
+        $("skill-results").html(skill);
+    });
+
 });
