@@ -1,5 +1,7 @@
 class Job:
-    def __init__(self):
+    def __init__(self, job_id = -1, title = "", description = "", \
+                    budget = 0, currency = "", location = None, \
+                    skills = [], userId = 0):
         self.job_id = -1
         self.title = ""
         self.description = ""

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+{{ super() }}
+<div class="d-flex justify-content-center">
+    <div class="card p-5 w-50">
+        <div class="form-group">
+            <h2>{Project Name}</h2>
+            <h6 class="text-right">Date created: 2019-11-22</h6>
+            <div class="card my-3">
+                <div class="card-header font-weight-bold">Project Description </div>
+                <p class="text-justify card-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                    sunt
+                    in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <h3>Jobs Listed on Freelancer</h3>
+            <div class="card my-3">
+                <div class="card-header font-weight-bold">
+                    <div class="float-left">Job - {Skill}</div>
+                    <span class="badge badge-success font-weight-bold ml-3">{Status}</span>
+                    <a href="#" class="btn btn-primary float-right p-2">Go To Job</a>
+                </div>
+                <p class="text-justify card-body">
+                    <span class="font-weight-bold">Freelancer currently assigned: <a href="#">{freelancer}</a>
+                    </span><br><br>
+                    <span class="font-weight-bold">Job Description</span><br>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </div>
+            <div class="card my-3">
+                <div class="card-header font-weight-bold">
+                    <div class="float-left">Job - {Skill}</div>
+                    <span class="badge badge-danger font-weight-bold ml-3">{Status}</span>
+                    <a href="#" class="btn btn-primary float-right p-2">Go To Job</a>
+                </div>
+                <p class="text-justify card-body">
+                    <span class="font-weight-bold">Freelancer currently assigned: <a href="#">{freelancer}</a>
+                    </span><br><br>
+                    <span class="font-weight-bold">Job Description</span><br>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
