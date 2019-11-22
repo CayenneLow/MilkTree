@@ -18,19 +18,36 @@
                 <label for="location">Location</label>
                 <input class="form-control" type="text" name="location" />
                 <label for="jobs">Jobs</label>
-    
-                <ul class="job-list">
+
+                <ul class="job-list" id="job-list">
                     <li class="job-item">
                         <div class="job-info-box">
                             <label for="role">Role</label>
-                            <input class="form-control" type="text" name="{{jobs|length|string}}-role" />
+                            <input type="text" name="{{jobs|length|string}}-role" />
+                            <label for="description">Description</label>
+                            <input type="text" name="{{jobs|length|string}}-description" />
+                            <label for="budget">Budget</label>
+                            <input type="number" name="{{jobs|length|string}}-budget" />
+                            <label for="currency">Currency</label>
+                            <select name="currency">
+                              <option value="AUD">AUD</option>
+                              <option value="USD">USD</option>
+                              <option value="EUR">EUR</option>
+                            </select>
+                            <label for="skills">Skills</label>
+                            <select name="skills">
+                              <option value="AUD">SEO</option>
+                              <option value="USD">Digital Marketing</option>
+                              <option value="EUR">Front-end web developemtn</option>
+                            </select>
                         </div>
                     </li>
-                    <a href="#" id="new-job-button">New job!</a>
                 </ul>
-    
-                <input class="form-control" type="submit" style="margin-top:20px;" class="submit-donate" value="Submit" />
-            </div>
+                <a href="#" id="new-job-button">New job!</a>
+                <br />
+
+                <input type="submit" style="margin-top:20px;"class="submit-donate" value="Submit" />
+
         </form>
     </div>
 </div>
