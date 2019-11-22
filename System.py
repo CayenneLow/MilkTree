@@ -25,7 +25,7 @@ class System:
 
     def find_project(self, project_id):
         for project in self.projects:
-            if project.get_proj_id() == project_id:
+            if str(project.get_proj_id()) == str(project_id):
                 return project
         return None
 

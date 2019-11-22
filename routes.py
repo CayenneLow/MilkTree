@@ -48,6 +48,7 @@ def before_request():
 @app.route('/')
 def index():
     if 'access_token' in session:
+        print(session['access_token'])
         return redirect(url_for('dashboard'))
     else:
         return render_template('index.html')
@@ -65,7 +66,6 @@ def create_project(title="", desc="", location=""):
     n_jobs = 0
     project = Project(title, desc, system().get_n_projects())
     project.set_location(location)
-    system().add_project(project)
     currency_result = get_currencies()
     currencies = []
     for currency in currency_result['currencies']:
@@ -85,7 +85,6 @@ def create_project(title="", desc="", location=""):
         # Populate jobs for the project.
         for i in range(1, int(request.form['nJobs']) + 1):
             print("i: " + str(i) + ", len: " + str(len(request.form)) + "\n")
-            print("hi")
             num_string = str(i)
             role = request.form[num_string + "-role"]
             job_desc = request.form[num_string + "-description"]
@@ -102,9 +101,15 @@ def create_project(title="", desc="", location=""):
                 skill_id_list.append(entry)
             new_job = Job(i, role, job_desc, budget_min, budget_max, curr_id, skill_id_list)
             new_job.set_skills(skill_id_list)
-            post_job(new_job)
+            new_job.set_skill_names(skill_list)
+            response = post_job(new_job)
+            new_job.set_job_id(response['result']['id'])
+            new_job.set_job_link(response['result']['seo_url'])
             project.add_job(new_job)
             i += 1
+        project.set_title(title)
+        project.set_desc(desc)
+        system().add_project(project)
         return redirect(url_for("dashboard"))
 
     return render_template('create_project.html', jobs = project.get_jobs(), currencies=currencies, skills=skill_names, njobs = n_jobs)
@@ -159,10 +164,10 @@ def testAPI():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', projects = system().get_projects())
 
 @app.route('/projects/<id>')
 def singleProject(id):
-    #code = request.args.get('code')
-    # print(id)
-    return render_template('individualProject.html', id=id)
+    project = system().find_project(id)
+    print(project)
+    return render_template('individualProject.html', id=id, project=project)

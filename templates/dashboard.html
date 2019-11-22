@@ -8,31 +8,20 @@
 <div class="d-flex justify-content-center">
     <div class="d-flex-column projectsContainer">
         <h1> Active Projects </h1>
-
+        {% for project in projects %}
         <div class="card m-1">
             <div class="card-body" >
-                <h4 class="card-title">Getting the word out</h5>
+                <h4 class="card-title">{{ project.get_title() }}</h5>
                     <div class="card-header"><b> Jobs Posted </b></div>
+                    {% for job in project.get_jobs() %}
                     <ul class="list-group list-group-flush" style="border-width:10px;">
-                        <li class="list-group-item list-group-item">SEO - Search Engine Optimization</li>
-                        <li class="list-group-item list-group-item">Graphic Design</li>
-                        <li class="list-group-item list-group-item">Digital marketing</li>
+                        <li class="list-group-item list-group-item">{{ job.get_title() }}</li>
                     </ul>
-                    <a href="{{url_for('singleProject', id=1)}}" class="mt-2 btn btn-success">Project Details</a>
+                    {% endfor %}
+                    <a href="{{url_for('singleProject', id=project.get_proj_id())}}" class="mt-2 btn btn-success">Project Details</a>
             </div>
         </div>
-        <div class="card m-1">
-            <div class="card-body">
-                <h4 class="card-title">Getting into business</h5>
-                    <div class="card-header"><b> Jobs Posted </b></div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item list-group">Website Development</li>
-                        <li class="list-group-item list-group">Law documents</li>
-                        <li class="list-group-item list-group">Marketing</li>
-                    </ul>
-                    <a href="{{url_for('singleProject', id=2)}}" class="mt-2 btn btn-success">Project Details</a>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

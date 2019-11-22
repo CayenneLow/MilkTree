@@ -38,5 +38,4 @@ def post_job(job):
     url = 'https://www.freelancer-sandbox.com/api/projects/0.1/projects/'
     
     response = requests.request("POST", url, data=job_json, headers=headers).json()
-    print(response)
-    return 
+    return response
