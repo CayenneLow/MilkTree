@@ -2,10 +2,17 @@ from models.Job import Job
 
 class Project:
     def __init__(self, title, desc):
+        self.proj_id = -1
         self.title = title
         self.desc = desc
         self.location = None
         self.jobs = []
+
+    def get_proj_id(self):
+        return self.id 
+    
+    def set_proj_id(self, id):
+        self.id = id
 
     def get_title(self):
         return self.title

@@ -1,5 +1,6 @@
 class Job:
     def __init__(self):
+        self.job_id = -1
         self.title = ""
         self.description = ""
         self.budget = 0
@@ -7,6 +8,12 @@ class Job:
         self.location = None
         self.skills = []
         self.userId = 0 #freelancer user id
+
+    def set_job_id(self, id):
+        self.id = id
+    
+    def get_job_id(self):
+        return self.id
 
     def set_title(self, title):
         self.title = title
