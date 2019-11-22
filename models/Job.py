@@ -32,23 +32,23 @@ class Job:
     def remove_skill(skill):
         self.skills.remove(skill)
 
-    def get_title:
+    def get_title():
         return self.title
 
-    def get_description:
+    def get_description():
         return self.description
 
-    def get_budget:
+    def get_budget():
         return self.budget
 
-    def get_currency:
+    def get_currency():
         return self.currency
 
-    def get_location:
+    def get_location():
         return self.location
 
-    def get_userId:
+    def get_userId():
         return self.userId
 
-    def get_skills:
+    def get_skills():
         return self.skills
