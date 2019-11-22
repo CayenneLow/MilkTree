@@ -1,9 +1,11 @@
 from flask import render_template, request, redirect, url_for, abort, session
 from server import app
 import requests
+import json
 
 from models.Project import Project
 from models.Job import Job
+from helper.post_job import post_job
 
 # from freelancersdk.session import Session
 # session = Session(oauth_token=2pMF6DNa7UUPSu9L83958IzrFBqWSp)
@@ -19,8 +21,18 @@ client_secret = 'ab7f65247142d1e36665020bb91dfad611b5152944b44c2e7a6ce8908356d67
 def system():
     return app.config['SYSTEM']
 
+# Gets the skills as a json.
+def get_skills():
+    return app.config['SKILLS']
+
+# Gets currencies as a json.
+def get_currencies():
+    return app.config['CURRENCIES']
+
+
 @app.route('/')
 def index():
+    print(get_skills())
     if 'access_token' in session:
         username = session['access_token']
         return ('Logged in as ' + username + '<br>' + \
@@ -40,9 +52,14 @@ def utility_functions():
 @app.route('/create-project', methods=['GET', 'POST'])
 def create_project(title="", desc="", location=""):
     n_jobs = 0
-    project = Project(title, desc)
+    project = Project(title, desc, system().get_n_projects())
     project.set_location(location)
     system().add_project(project)
+    currency_result = get_currencies()
+    currencies = []
+    for currency in currency_result['currencies']:
+        currencies.append(currency['code'])
+        print(currency['code'])
 
     if (request.method == "POST"):
         title = request.form['title']
@@ -55,12 +72,11 @@ def create_project(title="", desc="", location=""):
             job_desc = request.form[num_string + "-description"]
             budget = request.form[num_string + "-budget-price"]
             curr = request.form[num_string + "-budget-currency"]
-            # TODO: Add skills here
-            new_job = Job(i, role, job_desc, budget, curr) 
+            skills = request.form[num_string + "-skills"]
+            new_job = Job(i, role, job_desc, budget, curr, skills.split(","))
             project.add_job(new_job)
-        
 
-    return render_template('create_project.html', jobs = project.get_jobs(), njobs = n_jobs)
+    return render_template('create_project.html', jobs = project.get_jobs(), currencies=currencies, njobs = n_jobs)
 
 # Users who hit this endpoint will be redirected to the authorization prompt
 @app.route('/authorize')

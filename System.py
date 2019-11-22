@@ -35,3 +35,6 @@ class System:
                 self.projects.remove(project)
                 return
     
+    def get_n_projects(self):
+        return len(self.projects)
+    
