@@ -7,16 +7,22 @@ from models.Job import Job
 def index():
     return render_template('index.html')
 
+@app.context_processor
+def utility_functions():
+    def print_in_console(message):
+        print(str(message))
+
+    return dict(mdebug=print_in_console)
+
 @app.route('/create-project', methods=['GET', 'POST'])
 def create_project(title="", desc="", location=""):
     if (request.method == "POST"):
         title = request.form['title']
         desc = request.form['description']
         location = request.form['location']
+        print(request.form['1-role'])
 
     project = Project(title, desc)
     project.set_location(location)
-    print(type(project.get_jobs))
-    #print(len(project.get_jobs))
 
-    return render_template('create_project.html', jobs = project.get_jobs)
+    return render_template('create_project.html', jobs = project.get_jobs())
