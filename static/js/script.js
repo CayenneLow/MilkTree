@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $("#" + numJobs + "-select-skills").on('change', dropDown);
 
     function dropDown() {
-        var skill = $("#select2-select-" + numJobs + "-skills-container").text();
+        var skill = $("#" + numJobs + "-select-skills option:selected").text();
+        console.log(skill);
         if (skill == "Select Skill"){
             return;
         }
