@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         $(jobCardId + ' #description').attr("name", numJobs + "-description");
         $(jobCardId + ' #budget-min').attr("name", numJobs + "-budget-min");
         $(jobCardId + ' #budget-max').attr("name", numJobs + "-budget-max");
+        $(jobCardId + ' #hidden-skills').attr("name", numJobs + "-hidden-skills");
         $("#numJob").val(Number($("#numJob").val()) + 1);
         $("#job-card-" + numJobs + ' #currency').attr("name", numJobs + "-currency");
         $(jobCardId + '  #1-select-skills').prop("id", numJobs + "-select-skills");
@@ -46,10 +47,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
         if (alreadyThere) {
             return;
         }
-
-        var cur_value = $("#hidden-skills").val();
+        console.log("Gets here");
+        var cur_value = $("[name=" + index +  "-hidden-skills]").val();
+        if (cur_value == "undefined") {
+            cur_value = "";
+        }
         console.log(cur_value);
-        $("#hidden-skills").val(cur_value + "|" + skill);
+        console.log(cur_value + "|" + skill);
+        console.log(index);
+        $("[name=" + index + "-hidden-skills]").val(cur_value + "|" + skill);
+
         skillElement = document.createElement("li")
         skillElement.className = "badge badge-warning list-inline-item"
         skillElement.innerText = skill;
