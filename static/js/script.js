@@ -1,46 +1,4 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-    // function addJobBox(){
-    //     // const lastJob = document.getElementById('last-job')
-    //
-    //     var newJob = "<div class=\"card\">\
-    //     <label for=\"jobs\" class=\"card-header w-100\">Job</label>\
-    //     <ul class=\"list-group list-group-flush\">\
-    //         <div class=\"job-info-box\">\
-    //             <li class=\"list-group-item\">\
-    //                 <label for=\"role\">Role</label>\
-    //                 <input class=\"form-control\" type=\"text\" name=\"{{jobs|length|string}}-role\" />\
-    //             </li>\
-    //             <li class=\"list-group-item\">\
-    //                 <label for=\"description\">Description</label>\
-    //                 <textarea class=\"form-control\" type=\"text\" name=\"{{jobs|length|string}}-description\"></textarea>\
-    //             </li>\
-    //             <li class=\"list-group-item\">\
-    //                 <label for=\"budget\">Budget</label>\
-    //                 <input class=\"form-control\" type=\"number\" name=\"{{jobs|length|string}}-budget\" />\
-    //             </li>\
-    //             <li class=\"list-group-item\">\
-    //                 <select class=\"custom-select\">\
-    //                     <option selected> Currency </option>\
-    //                     <option value=\"AUD\">AUD</option>\
-    //                     <option value=\"USD\">USD</option>\
-    //                     <option value=\"EUR\">EUR</option>\
-    //                 </select>\
-    //             </li>\
-    //             <li class=\"list-group-item\">\
-    //                 <select class=\"custom-select\">\
-    //                     <option selected> Skills </option>\
-    //                     <option value=\"AUD\">SEO</option>\
-    //                     <option value=\"USD\">Digital Marketing</option>\
-    //                     <option value=\"EUR\">Front-end web developemtn</option>\
-    //                 </select>\
-    //             </li>\
-    //         </div>\
-    //     </li>\
-    // </div>"
-    //
-    //     $("#job-list").append(newJob)
-    // }
-
     var numJobs = 1;
     function addJobBox() {
         numJobs++;
@@ -53,16 +11,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
         $("#job-card-" + numJobs + ' #description').attr("name", numJobs + "-description");
         $("#job-card-" + numJobs + ' #budget-min').attr("name", numJobs + "-budget-min");
         $("#job-card-" + numJobs + ' #budget-max').attr("name", numJobs + "-budget-max");
-
+        $("#job-card-" + numJobs + " #select-skills").select2();
+        $("#job-card-" + numJobs + " #select-skills").change(dropDown);
     }
-
-    const newJobButton = document.getElementById('new-job-button');
-
-    newJobButton.addEventListener("click", addJobBox);
+    
+    $("#new-job-button").on('click', addJobBox);
 
     $("#select-skills").select2();
 
-    $("#select-skills").on('change', function() {
+    $("#select-skills").on('change', dropDown);
+
+    function dropDown() {
         var skill = $("#select2-select-skills-container").text();
         if (skill == "Select Skill"){
             return;
@@ -80,6 +39,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
         skillElement = document.createElement("p")
         skillElement.innerText = skill;
         $("#skill-results").append(skillElement);
-    });
-
+    }
 });
