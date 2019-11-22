@@ -3,6 +3,8 @@
 
 <head>
     {% block head %}
+    <link rel="shortcut icon" href="{{url_for('static', filename='images/favicon.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{url_for('static', filename='images/favicon.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -44,11 +46,11 @@
         </div>
         {% if session['access_token'] %}
         <a href="{{url_for('clear_token')}}" class="mx-2 btn btn-secondary navbar-text text-white">
-           Logout 
+            Logout
         </a>
         {% else %}
         <a href="{{url_for('login')}}" class="mx-2 btn btn-secondary navbar-text text-white">
-            Login 
+            Login
         </a>
         {% endif %}
     </nav>
