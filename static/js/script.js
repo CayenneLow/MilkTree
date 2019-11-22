@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     var numJobs = 1;
+    let cloneStatic = $("#job-card-1").clone();
+
     function addJobBox() {
+        let clone = cloneStatic.clone();
         numJobs++;
-        let clone = $("#job-card-1").clone();
         $("#job-list").append(clone);
         //clone.appendTo($("#job-list"));
         clone.prop("id", `job-card-${numJobs}`);
@@ -11,18 +13,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
         $("#job-card-" + numJobs + ' #description').attr("name", numJobs + "-description");
         $("#job-card-" + numJobs + ' #budget-min').attr("name", numJobs + "-budget-min");
         $("#job-card-" + numJobs + ' #budget-max').attr("name", numJobs + "-budget-max");
-        $("#job-card-" + numJobs + " #select-skills").select2();
-        $("#job-card-" + numJobs + " #select-skills").change(dropDown);
+        $("#job-card-" + numJobs + ' #1-select-skills').prop("id", numJobs + "-select-skills");
+        console.log("#job-card-" + numJobs + " #" + numJobs + "-select-skills");
+        $("#job-card-" + numJobs + " #" + numJobs + "-select-skills").select2();
+        $("#job-card-" + numJobs + " #" + numJobs + "-select-skills").change(dropDown);
     }
     
     $("#new-job-button").on('click', addJobBox);
 
-    $("#select-skills").select2();
+    $("#" + numJobs + "-select-skills").select2();
 
-    $("#select-skills").on('change', dropDown);
+    $("#" + numJobs + "-select-skills").on('change', dropDown);
 
     function dropDown() {
-        var skill = $("#select2-select-skills-container").text();
+        var skill = $("#select2-select-" + numJobs + "-skills-container").text();
         if (skill == "Select Skill"){
             return;
         }
