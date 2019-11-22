@@ -69,3 +69,7 @@ def testAPI():
     response = requests.request("POST", url, data=payload, headers=headers).json()
     print(response)
     return redirect(url_for("index"))
+    
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
