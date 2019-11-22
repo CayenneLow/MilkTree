@@ -41,7 +41,7 @@ def get_skill_id(skill, skills_result):
 
 @app.before_request
 def before_request():
-    if request.endpoint != 'login' and request.endpoint != 'index' and request.endpoint != 'handle_authorize' and request.endpoint != 'authorized' and request.endpoint != 'clear_token':
+    if '/static/' not in request.path and request.endpoint != 'login' and request.endpoint != 'index' and request.endpoint != 'handle_authorize' and request.endpoint != 'authorized' and request.endpoint != 'clear_token':
         if 'access_token' not in session:
             return redirect(url_for('login'))
 
