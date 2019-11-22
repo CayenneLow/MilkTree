@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, url_for, abort, session
 from server import app
 import requests
 
-from models.Project import Project
+from models.project import Project
 from models.Job import Job
 
 
