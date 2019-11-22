@@ -5,11 +5,11 @@ import requests
 # session = Session(oauth_token=2pMF6DNa7UUPSu9L83958IzrFBqWSp)
 
 oauth_uri = 'https://accounts.freelancer-sandbox.com/oauth/authorize'
-client_id = '0a75d1eb-cbb4-40ce-9e1e-7419f780ff13'
-redirect_uri = 'https://localhost:5000/authorized'
+client_id = '16893251-7ef7-4c9c-8876-e7598f2e3569'
+redirect_uri = 'http://localhost:5000/authorized'
 prompt = 'select_account consent'
 advanced_scopes = '1 2'
-client_secret = 'f6e934fbdfde41364ffcf14a6ca5aa991bbfe376414ff3397a9d0ad507d8ecf88ccc5e9a6ead35eec80daf4a24ca2f13a93115ddcd7ddf6e34bf69d6ae68750c'
+client_secret = 'ab7f65247142d1e36665020bb91dfad611b5152944b44c2e7a6ce8908356d67f1753a1544da4bc041715b50681688ec401d1e3dba9001420dc3e3f888a13332c'
 
 
 @app.route('/')
@@ -39,12 +39,13 @@ def authorized():
     url = "https://accounts.freelancer-sandbox.com/oauth/token"
     code = request.args.get('code')
     print(code)
-    payload = "grant_type=authorization_code&code={0}&client_id={1}&client_secret={2}&redirect_uri=https%3A%2F%2Flocalhost%3A5000%2Fauthorized".format(code, client_id, client_secret)
+    payload = "grant_type=authorization_code&code={0}&client_id={1}&client_secret={2}&redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fauthorized".format(code, client_id, client_secret)
     headers = {'content-type': 'application/x-www-form-urlencoded'}
 
-    response = requests.request("POST", url, data=payload, headers=headers).json()
+    response = requests.request("POST", url, data=payload, headers=headers)
+    # print(response)
+    response = response.json()
 
-    # print(response.text)
     session["access_token"] = (response["access_token"])
     session["refresh_token"] = (response["refresh_token"])
     return redirect(url_for("index"))
