@@ -29,6 +29,18 @@ def get_skills():
 def get_currencies():
     return app.config['CURRENCIES']
 
+def get_curr_id(curr, currency_result):
+    for currency in currency_result:
+        if currency['code'] is curr:
+            return currency['id']
+
+def get_skill_id(skill, skills_result):
+    for skill_i in skills_result:
+        if skill_i['name'] is skill:
+            return skill_i['id']
+
+
+
 
 @app.route('/')
 def index():
@@ -59,7 +71,7 @@ def create_project(title="", desc="", location=""):
     currencies = []
     for currency in currency_result['currencies']:
         currencies.append(currency['code'])
-
+        
     skills_result = get_skills()
     skills = []
     for skill in skills_result:
@@ -78,9 +90,17 @@ def create_project(title="", desc="", location=""):
             job_desc = request.form[num_string + "-description"]
             budget = request.form[num_string + "-budget-price"]
             curr = request.form[num_string + "-budget-currency"]
-            # skills = request.form[num_string + "-skills"]
-            new_job = Job(i, role, job_desc, budget, curr, skills.split(","))
+            skills = request.form[num_string + "-skills"]
+            curr_id = get_curr_id(curr, currency_result)
+            skill_list = skills.split(",")
+            skill_id_list = []
+            for skill in skill_list:
+                skill_id_list.append(skill)
+            curr_id = get_curr_id(curr)
+            new_job = Job(i, role, job_desc, budget, curr_id, skill_id_list)
             project.add_job(new_job)
+        
+
 
     return render_template('create_project.html', jobs = project.get_jobs(), currencies=currencies, skills=skills, njobs = n_jobs)
 
