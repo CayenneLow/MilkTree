@@ -1,7 +1,15 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-    var numJobs = 1;
+    let numJobs = 1;
     let cloneStatic = $("#job-card-1").clone();
-
+    
+    $("#new-job-button").on('click', addJobBox);
+    
+    $("#" + numJobs + "-select-skills").select2({width:'style'});
+    
+    $("#" + numJobs + "-select-skills").change(function(e) {
+        dropDown(e);
+    });
+    
     function addJobBox() {
         let clone = cloneStatic.clone();
         numJobs++;
@@ -9,34 +17,30 @@ document.addEventListener("DOMContentLoaded", function(event) {
         //clone.appendTo($("#job-list"));
         clone.prop("id", `job-card-${numJobs}`);
         var jobCardId = "#job-card-" + numJobs;
-        $("#job-card-" + numJobs + ' #role').attr("name", numJobs + "-role");
-        $("#job-card-" + numJobs + ' #description').attr("name", numJobs + "-description");
-        $("#job-card-" + numJobs + ' #currency').attr("name", numJobs + "-currency");
-        $("#job-card-" + numJobs + ' #budget-min').attr("name", numJobs + "-budget-min");
-        $("#job-card-" + numJobs + ' #budget-max').attr("name", numJobs + "-budget-max");
-        $("#job-card-" + numJobs + ' #1-select-skills').prop("id", numJobs + "-select-skills");
-        console.log("#job-card-" + numJobs + " #" + numJobs + "-select-skills");
-        $("#job-card-" + numJobs + " #" + numJobs + "-select-skills").select2({width:'style'});
-        $("#job-card-" + numJobs + " #" + numJobs + "-select-skills").change(dropDown);
+        $(jobCardId + ' #role').attr("name", numJobs + "-role");
+        $(jobCardId + ' #description').attr("name", numJobs + "-description");
+        $(jobCardId + ' #budget-min').attr("name", numJobs + "-budget-min");
+        $(jobCardId + ' #budget-max').attr("name", numJobs + "-budget-max");
         $("#numJob").val(Number($("#numJob").val()) + 1);
+        $("#job-card-" + numJobs + ' #currency').attr("name", numJobs + "-currency");
+        $(jobCardId + '  #1-select-skills').prop("id", numJobs + "-select-skills");
+        $(jobCardId + " #" + numJobs + "-select-skills").select2({width:'style'});
+        $(jobCardId + " #" + numJobs + "-select-skills").change(function (e) {
+            dropDown(e);
+        });
     }
-    
-    $("#new-job-button").on('click', addJobBox);
-
-    $("#" + numJobs + "-select-skills").select2();
-
-    $("#" + numJobs + "-select-skills").on('change', dropDown);
-
-    function dropDown() {
-        var skill = $("#" + numJobs + "-select-skills option:selected").text();
-        console.log(skill);
+   
+    function dropDown(event) {
+        let index = $(event.delegateTarget).prop("id").split("-")[0];
+        var skill = $("#" + index + "-select-skills option:selected").text();
         if (skill == "Select Skill"){
             return;
         }
-        var alreadyThere = 0;
-        $('#skill-results').children('p').each(function () {
+        let alreadyThere = 0;
+        $('#job-card-' + index + ' #skill-results').children('li').each(function () {
             if (skill == this.innerText) {
                 alreadyThere = 1;
+                return;
             }
         });
         if (alreadyThere) {
@@ -46,8 +50,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var cur_value = $("#hidden-skills").val();
         console.log(cur_value);
         $("#hidden-skills").val(cur_value + "|" + skill);
-        skillElement = document.createElement("p")
+        skillElement = document.createElement("li")
+        skillElement.className = "badge badge-warning list-inline-item"
         skillElement.innerText = skill;
-        $("#skill-results").append(skillElement);
+        $('#job-card-' + index + ' #skill-results').append(skillElement);
     }
 });

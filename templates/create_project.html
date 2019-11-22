@@ -11,7 +11,7 @@
 {% block content %}
 {{super()}}
 <div class="d-flex justify-content-center">
-    <div class="card p-5 w-50">
+    <div class="card p-5 w-75">
         <form method="POST">
             <div class="form-group">
                 <h2>Create a New Project</h2>
@@ -57,7 +57,7 @@
                                 </li>
                                 <li class="list-group-item">
                                     <label for="skills">Skills</label>
-                                    <div id="skill-results"></div>
+                                    <ul class="list-inline mb-3" id="skill-results"></ul>
                                     <select name="skills" id="1-select-skills" style="width: 100%;">
                                         <option value='0'>Select Skill</option>
                                         {% for skill in skills %}
