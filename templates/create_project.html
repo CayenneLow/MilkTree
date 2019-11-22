@@ -3,6 +3,10 @@
 {% block head %}
 {{ super() }}
 <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 {% endblock %}
 {% block content %}
 {{super()}}
@@ -23,45 +27,47 @@
                     Add Job
                 </span>
                 <div class="card-deck w-100" id="job-list">
-                    <div class="card w-100" id="job-list">
+                    <div class="card w-100" id="job-card-1">
                         <label for="jobs" class="card-header w-100">Job</label>
                         <ul class="list-group list-group-flush">
                             <div class="job-info-box">
                                 <li class="list-group-item">
                                     <label for="role">Role</label>
-                                    <input class="form-control" type="text" name="{{jobs|length|string}}-role" />
+                                    <input class="form-control" type="text" name="1-role" id="role"/>
                                 </li>
                                 <li class="list-group-item">
                                     <label for="description">Description</label>
-                                    <textarea class="form-control" type="text" name="{{jobs|length|string}}-description"></textarea>
+                                    <textarea class="form-control" type="text" name="1-description" id="description"></textarea>
                                 </li>
                                 <li class="list-group-item">
-                                    <label for="budget">Budget</label>
-                                    <input class="form-control" type="number" name="{{jobs|length|string}}-budget" />
+                                    <label for="budget" id="budget-label">Budget</label>
+                                    <input class="col-md-4 budget-inline form-control" type="number" name="1-budget-min" id="budget-min"/>
+                                    <span class="col-md-4 budget-inline">to</span>
+                                    <input class="col-md-4 budget-inline form-control" type="number" name="1-budget-max" id="budget-max"/>
                                 </li>
-                                <li class="list-group-item">
-                                    <select class="custom-select">
-                                        <option selected> Currency </option>
-                                        <option value="AUD">AUD</option>
-                                        <option value="USD">USD</option>
-                                        <option value="EUR">EUR</option>
-                                    </select>
-                                </li>
-                                <li class="list-group-item">
-                                    <select class="custom-select">
-                                        <option selected> Skills </option>
-                                        <option value="AUD">SEO</option>
-                                        <option value="USD">Digital Marketing</option>
-                                        <option value="EUR">Front-end web developemtn</option>
-                                    </select>
-                                </li>
+                                <label for="currency">Currency</label>
+                                <select name="currency" id="select-currency" class="custom-select">
+                                    {% for curr in currencies %}
+                                    <option value={{curr}}>{{curr}}</option>
+                                    {% endfor %}
+                                </select>
+                                </br />
+                                <label for="skills">Skills</label>
+                                <div id="skill-results"></div>
+                                <select name="skills" id="1-select-skills" style="width: 100%;">
+                                    <option value='0'>Select Skill</option>
+                                    {% for skill in skills %}
+                                    <option value={{skill}}>{{skill}}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
-                            </li>
+                        </ul>
                     </div>
                 </div>
+                <br />
 
-                <input type="submit" class="mt-3 form-control btn btn-primary" value="Submit" />
-
+                <input type="submit" style="margin-top:20px;" class="submit-donate" value="Submit" />
+            </div>
         </form>
     </div>
 </div>

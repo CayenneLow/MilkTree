@@ -1,48 +1,47 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-    function addJobBox(){
-        // const lastJob = document.getElementById('last-job')
+    var numJobs = 1;
+    let cloneStatic = $("#job-card-1").clone();
 
-        var newJob = "<div class=\"card\" id=\"job-list\">\
-        <label for=\"jobs\" class=\"card-header w-100\">Job</label>\
-        <ul class=\"list-group list-group-flush\">\
-            <div class=\"job-info-box\">\
-                <li class=\"list-group-item\">\
-                    <label for=\"role\">Role</label>\
-                    <input class=\"form-control\" type=\"text\" name=\"{{jobs|length|string}}-role\" />\
-                </li>\
-                <li class=\"list-group-item\">\
-                    <label for=\"description\">Description</label>\
-                    <textarea class=\"form-control\" type=\"text\" name=\"{{jobs|length|string}}-description\"></textarea>\
-                </li>\
-                <li class=\"list-group-item\">\
-                    <label for=\"budget\">Budget</label>\
-                    <input class=\"form-control\" type=\"number\" name=\"{{jobs|length|string}}-budget\" />\
-                </li>\
-                <li class=\"list-group-item\">\
-                    <select class=\"custom-select\">\
-                        <option selected> Currency </option>\
-                        <option value=\"AUD\">AUD</option>\
-                        <option value=\"USD\">USD</option>\
-                        <option value=\"EUR\">EUR</option>\
-                    </select>\
-                </li>\
-                <li class=\"list-group-item\">\
-                    <select class=\"custom-select\">\
-                        <option selected> Skills </option>\
-                        <option value=\"AUD\">SEO</option>\
-                        <option value=\"USD\">Digital Marketing</option>\
-                        <option value=\"EUR\">Front-end web developemtn</option>\
-                    </select>\
-                </li>\
-            </div>\
-        </li>\
-    </div>"
-
-        $("#job-list").append(newJob)
+    function addJobBox() {
+        let clone = cloneStatic.clone();
+        numJobs++;
+        $("#job-list").append(clone);
+        //clone.appendTo($("#job-list"));
+        clone.prop("id", `job-card-${numJobs}`);
+        var jobCardId = "#job-card-" + numJobs;
+        $("#job-card-" + numJobs + ' #role').attr("name", numJobs + "-role");
+        $("#job-card-" + numJobs + ' #description').attr("name", numJobs + "-description");
+        $("#job-card-" + numJobs + ' #budget-min').attr("name", numJobs + "-budget-min");
+        $("#job-card-" + numJobs + ' #budget-max').attr("name", numJobs + "-budget-max");
+        $("#job-card-" + numJobs + ' #1-select-skills').prop("id", numJobs + "-select-skills");
+        console.log("#job-card-" + numJobs + " #" + numJobs + "-select-skills");
+        $("#job-card-" + numJobs + " #" + numJobs + "-select-skills").select2({width:'style'});
+        $("#job-card-" + numJobs + " #" + numJobs + "-select-skills").change(dropDown);
     }
+    
+    $("#new-job-button").on('click', addJobBox);
 
-    const newJobButton = document.getElementById('new-job-button');
+    $("#" + numJobs + "-select-skills").select2();
 
-    newJobButton.addEventListener("click", addJobBox);
+    $("#" + numJobs + "-select-skills").on('change', dropDown);
 
+    function dropDown() {
+        var skill = $("#select2-select-" + numJobs + "-skills-container").text();
+        if (skill == "Select Skill"){
+            return;
+        }
+        var alreadyThere = 0;
+        $('#skill-results').children('p').each(function () {
+            if (skill == this.innerText) {
+                alreadyThere = 1;
+            }
+        });
+        if (alreadyThere) {
+            return;
+        }
+
+        skillElement = document.createElement("p")
+        skillElement.innerText = skill;
+        $("#skill-results").append(skillElement);
+    }
 });
