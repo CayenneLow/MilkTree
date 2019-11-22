@@ -17,6 +17,7 @@ advanced_scopes = '1 2'
 client_secret = 'ab7f65247142d1e36665020bb91dfad611b5152944b44c2e7a6ce8908356d67f1753a1544da4bc041715b50681688ec401d1e3dba9001420dc3e3f888a13332c'
 
 
+
 @app.route('/')
 def index():
     if 'access_token' in session:
@@ -102,3 +103,10 @@ def testAPI():
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
+
+@app.route('/projects')
+def singleProject():
+    #code = request.args.get('code')
+    # print(id)
+    return render_template('individualProject.html')
+
