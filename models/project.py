@@ -1,3 +1,5 @@
+from models.Job import Job 
+
 class Project:
     def __init__(self, title, desc):
         self.title = title
@@ -26,9 +28,9 @@ class Project:
     def get_jobs():
         return self.jobs 
     
-    def add_job(Job job):
+    def add_job(job):
         self.jobs.append(job)
     
-    def delete_job(Job job):
+    def delete_job(job):
         self.jobs.remove(job)
     

@@ -5,4 +5,6 @@ from server import app
 def index():
     return render_template('index.html')
 
-
+@app.route('/create-new-project', method="POST")
+def create_new_project():
+    
