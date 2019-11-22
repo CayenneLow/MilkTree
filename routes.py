@@ -15,6 +15,7 @@ prompt = 'select_account consent'
 advanced_scopes = '1 2'
 client_secret = 'f6e934fbdfde41364ffcf14a6ca5aa991bbfe376414ff3397a9d0ad507d8ecf88ccc5e9a6ead35eec80daf4a24ca2f13a93115ddcd7ddf6e34bf69d6ae68750c'
 
+# Gets system. 
 def system():
     return app.config['SYSTEM']
 
