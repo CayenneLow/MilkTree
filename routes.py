@@ -17,7 +17,8 @@ def index():
     if 'access_token' in session:
         username = session['access_token']
         return ('Logged in as ' + username + '<br>' + \
-         "<b><a href = '/clear'>click here to log out</a></b>")
+         "<b><a href = '/clear'>click here to log out</a></b>"
+         "<b><a href = '/testAPI'>click here to test api</a></b>")
     else:
         return render_template('base.html')
 
@@ -58,3 +59,67 @@ def clear_token():
 @app.route('/login')
 def login():
     return render_template('login.html')
+
+@app.route('/testAPI')
+def testAPI():
+    headers = {'content-type': 'application/json', 'freelancer-oauth-v1': session['access_token']}
+    url = 'https://www.freelancer-sandbox.com/api/projects/0.1/projects/'
+    payload = '{"title": "Fix my PHP website",  "description": "I wrote a small website in PHP but it does not work. I need someone to fix it.",  "currency": {"id": 3},"budget": {"minimum": 250, "maximum": 500},"jobs": [{"id": 3},{"id": 17}]}'
+    
+    response = requests.request("POST", url, data=payload, headers=headers).json()
+    print(response)
+    return redirect(url_for("index"))
+    
+
+"""
+    curl -X POST \
+https://www.freelancer.com/api/projects/0.1/projects/ \
+--header 'freelancer-oauth-v1: <oauth_access_token>' \
+--header 'Content-Type: application/json' \
+--data '{
+  "title": "Build my Super Website!",
+  "description": "project description",
+  "currency": {
+    "id": 1
+  },
+  "budget": {
+    "minimum": 20.5,
+    "maximum": 80.5,
+    "currency_id": 1
+  },
+  "jobs": [
+    {
+      "id": 7
+    }
+  ],
+  "type": "FIXED",
+  "hourly_project_info": {
+    "commitment": {
+      "hours": 1,
+      "interval": "WEEK"
+    }
+  },
+  "hireme": true,
+  "hireme_initial_bid": {
+    "bidder_id": 1,
+    "amount": 12.2,
+    "period": 7
+  },
+  "location": {
+    "city": "Sydney",
+    "country": {
+      "name": "Australia",
+      "flag_url": "null",
+      "code": "null",
+      "highres_flag_url": "null",
+      "flag_url_cdn": "null",
+      "highres_flag_url_cdn": "null"
+    },
+    "latitude": 1,
+    "longitude": 1,
+    "administrative_area": "Hello, world!",
+    "full_address": "Hello, world!",
+    "vicinity": "Hello, world!"
+  }
+}'
+"""
