@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             return;
         }
         var alreadyThere = 0;
-        $('#skill-results').children('p').each(function () {
+        $('#skill-results').children('li').each(function () {
             if (skill == this.innerText) {
                 alreadyThere = 1;
             }
@@ -41,7 +41,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             return;
         }
 
-        skillElement = document.createElement("p")
+        skillElement = document.createElement("li")
+        skillElement.className = "badge badge-warning list-inline-item"
         skillElement.innerText = skill;
         $("#skill-results").append(skillElement);
     }
