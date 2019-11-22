@@ -33,8 +33,11 @@ class Project:
         self.location = location
 
     def get_jobs(self):
-        return self.jobs
-
+        return self.jobs 
+    
+    def set_jobs(self, jobs):
+        self.jobs = jobs
+    
     def add_job(self, job):
         self.jobs.append(job)
 
