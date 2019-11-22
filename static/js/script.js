@@ -1,30 +1,42 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-    const jobItem = $('.job-item')[0];
-
     function addJobBox(){
         // const lastJob = document.getElementById('last-job')
 
-        var newJob = "<li class=\"job-item\"><div class=\"job-info-box\">\
-                <label for=\"role\">Role</label>\
-                <input type=\"text\" name=\"{{jobs|length|string}}-role\" />\
-                <label for=\"description\">Description</label>\
-                <input type=\"text\" name=\"{{jobs|length|string}}-description\" />\
-                <label for=\"budget\">Budget</label>\
-                <input type=\"number\" name=\"{{jobs|length|string}}-budget\" />\
-                <label for=\"currency\">Currency</label>\
-                <select name=\"currency\">\
-                  <option value=\"AUD\">AUD</option>\
-                  <option value=\"USD\">USD</option>\
-                  <option value=\"EUR\">EUR</option>\
-                </select>\
-                <label for=\"skills\">Skills</label>\
-                <select name=\"skills\">\
-                  <option value=\"AUD\">SEO</option>\
-                  <option value=\"USD\">Digital Marketing</option>\
-                  <option value=\"EUR\">Front-end web developemtn</option>\
-                </select>\
+        var newJob = "<div class=\"card\" id=\"job-list\">\
+        <label for=\"jobs\" class=\"card-header w-100\">Job</label>\
+        <ul class=\"list-group list-group-flush\">\
+            <div class=\"job-info-box\">\
+                <li class=\"list-group-item\">\
+                    <label for=\"role\">Role</label>\
+                    <input class=\"form-control\" type=\"text\" name=\"{{jobs|length|string}}-role\" />\
+                </li>\
+                <li class=\"list-group-item\">\
+                    <label for=\"description\">Description</label>\
+                    <textarea class=\"form-control\" type=\"text\" name=\"{{jobs|length|string}}-description\"></textarea>\
+                </li>\
+                <li class=\"list-group-item\">\
+                    <label for=\"budget\">Budget</label>\
+                    <input class=\"form-control\" type=\"number\" name=\"{{jobs|length|string}}-budget\" />\
+                </li>\
+                <li class=\"list-group-item\">\
+                    <select class=\"custom-select\">\
+                        <option selected> Currency </option>\
+                        <option value=\"AUD\">AUD</option>\
+                        <option value=\"USD\">USD</option>\
+                        <option value=\"EUR\">EUR</option>\
+                    </select>\
+                </li>\
+                <li class=\"list-group-item\">\
+                    <select class=\"custom-select\">\
+                        <option selected> Skills </option>\
+                        <option value=\"AUD\">SEO</option>\
+                        <option value=\"USD\">Digital Marketing</option>\
+                        <option value=\"EUR\">Front-end web developemtn</option>\
+                    </select>\
+                </li>\
             </div>\
-        </li>"
+        </li>\
+    </div>"
 
         $("#job-list").append(newJob)
     }
@@ -37,8 +49,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     $("#select-skills").on('change', function() {
         console.log("IN HERE");
-        var skill = $("#select-skills option:selected").text();
-        $("skill-results").html(skill);
+        var skill = $("#select2-select-skills-container").text();
+        console.log("SKILL")
+        console.log(skill);
+        skillElement = document.createElement("p")
+        skillElement.innerText = skill;
+        $("#skill-results").append(skillElement);
     });
 
 });

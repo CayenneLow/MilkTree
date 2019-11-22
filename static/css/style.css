@@ -19,3 +19,7 @@ html, body {
 .projectsContainer{
     width:50%;
 }
+
+#new-job-button {
+    cursor: pointer;
+}
