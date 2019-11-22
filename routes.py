@@ -92,7 +92,7 @@ def create_project(title="", desc="", location=""):
             budget_min = float(request.form[num_string + "-budget-min"])
             budget_max= float(request.form[num_string + "-budget-max"])
             curr = request.form[num_string + "-currency"]
-            skills = request.form["hidden-skills"]
+            skills = request.form[num_string + "-hidden-skills"]
             curr_id = get_curr_id(curr, currency_result)
             skill_list = skills.split("|")
             skill_list = skill_list[1:]
@@ -165,4 +165,3 @@ def singleProject(id):
     #code = request.args.get('code')
     # print(id)
     return render_template('individualProject.html', id=id)
-
