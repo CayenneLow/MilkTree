@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}New Project{% endblock %}
+{% block head %}
+{{ super() }}
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock %}
+{% block content %}
+{{super()}}
+<div class="d-flex justify-content-center">
+    <div class="card p-5">
+        <form method="POST">
+            <div class="form-group">
+                <h2>Create a New Project</h2>
+                <label for="title">Project Title</label>
+                <input class="form-control" type="text" name="title" />
+                <label for="description">Description</label>
+                <input class="form-control" type="text" name="description" />
+                <label for="location">Location</label>
+                <input class="form-control" type="text" name="location" />
+                <label for="jobs">Jobs</label>
+    
+                <ul class="job-list">
+                    <li class="job-item">
+                        <div class="job-info-box">
+                            <label for="role">Role</label>
+                            <input class="form-control" type="text" name="{{jobs|length|string}}-role" />
+                        </div>
+                    </li>
+                    <a href="#" id="new-job-button">New job!</a>
+                </ul>
+    
+                <input class="form-control" type="submit" style="margin-top:20px;" class="submit-donate" value="Submit" />
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
