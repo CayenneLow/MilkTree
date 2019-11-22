@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+{{ super() }}
+<div class="d-flex justify-content-center">
+    <div class="projectsContainer container">
+        <div class="row">
+            <h1 class="mb-3"> Packages </h1>
+        </div>
+        <div class="row card-deck">
+            <div class="card m-1">
+                <img class="card-img-top" src="{{url_for('static', filename='images/marketingCardBanner.png')}}"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Marketing Starter Pack</h5>
+                        <div class="card-text">
+                            <p class="font-weight-bold">Package Description</p>
+                            Specially tailored for startups looking to get the word out about their business
+                        </div>
+                        <div class="card-header"><b> Skill list </b></div>
+                        <ul class="list-group list-group-flush" style="border-width:10px;">
+                            <li class="list-group-item list-group-item">SEO - Search Engine Optimization</li>
+                            <li class="list-group-item list-group-item">Graphic Design</li>
+                            <li class="list-group-item list-group-item">Digital marketing</li>
+                        </ul>
+                        <a href="{{url_for('create_project')}}" class="mt-2 btn btn-success">Select</a>
+                </div>
+            </div>
+            <div class="card m-1">
+                <img class="card-img-top " src="{{url_for('static', filename='images/startupCardBanner.png')}}"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Startup Starter Pack</h5>
+                        <div class="card-text">
+                            <p class="font-weight-bold">Package Description</p>
+                            Specially tailored for ambitious entrepreneurs looking to take the first step into startups 
+                        </div>
+                        <div class="card-header"><b> Skill list </b></div>
+                        <ul class="list-group list-group-flush" style="border-width:10px;">
+                            <li class="list-group-item list-group-item">Law Compliance</li>
+                            <li class="list-group-item list-group-item">Marketing</li>
+                            <li class="list-group-item list-group-item">Customer Outreach</li>
+                        </ul>
+                        <a href="{{url_for('create_project')}}" class="mt-2 btn btn-success">Select</a>
+                </div>
+            </div>
+            <div class="card m-1">
+                <img class="card-img-top" src="{{url_for('static', filename='images/filmmakingCardBanner.png')}}"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Filmmakers Starter Pack</h5>
+                        <div class="card-text">
+                            <p class="font-weight-bold">Package Description</p>
+                            Specially tailored for aspiring filmmakers looking to make it big in the industry
+                        </div>
+                        <div class="card-header"><b> Skill list </b></div>
+                        <ul class="list-group list-group-flush" style="border-width:10px;">
+                            <li class="list-group-item list-group-item">Ghostwriting</li>
+                            <li class="list-group-item list-group-item">Photography</li>
+                            <li class="list-group-item list-group-item">Scene framing</li>
+                        </ul>
+                        <a href="{{url_for('create_project')}}" class="mt-2 btn btn-success">Select</a>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4 text-center justify-content-center">
+            <h4>Didn't find the right one for you?</h4>
+        </div>
+        <div class="row mb-5 text-center justify-content-center">
+            <a href="{{url_for('create_project')}}" class = "btn btn-warning font-weight-bold"> Create your own project </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -161,6 +161,10 @@ def testAPI():
 def dashboard():
     return render_template('dashboard.html')
 
+@app.route('/packages')
+def packages():
+    return render_template('packages.html')
+
 @app.route('/projects/<id>')
 def singleProject(id):
     #code = request.args.get('code')
