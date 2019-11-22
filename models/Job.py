@@ -1,7 +1,7 @@
 class Job:
     def __init__(self, job_id = -1, title = "", description = "", \
                     budget_min = 0, budget_max = 0, currency = "", location = None, \
-                    skills = [], userId = 0):
+                    skills = [], userId = 0, skill_names = [], job_link = ""):
         self.job_id = job_id
         self.title = title
         self.description = description
@@ -10,7 +10,21 @@ class Job:
         self.currency = currency
         self.location = location
         self.skills = skills
+        self.skill_names = skill_names
         self.userId = userId #freelancer user id
+        self.job_link = job_link
+
+    def set_job_link(self, job_link):
+        self.job_link = job_link
+    
+    def get_job_link(self):
+        return self.job_link
+        
+    def set_skill_names(self, skill_names):
+        self.skill_names = skill_names
+    
+    def get_skill_names(self):
+        return self.skill_names
 
     def set_job_id(self, id):
         self.id = id
