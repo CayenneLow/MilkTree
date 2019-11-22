@@ -19,7 +19,7 @@ def index():
         return ('Logged in as ' + username + '<br>' + \
          "<b><a href = '/clear'>click here to log out</a></b>")
     else:
-        return render_template('index.html')
+        return render_template('base.html')
 
 # Users who hit this endpoint will be redirected to the authorization prompt
 @app.route('/authorize')
