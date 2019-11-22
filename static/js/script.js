@@ -37,8 +37,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     $("#select-skills").on('change', function() {
         console.log("IN HERE");
-        var skill = $("#select-skills option:selected").text();
-        $("skill-results").html(skill);
+        var skill = $("#select2-select-skills-container").text();
+        console.log("SKILL")
+        console.log(skill);
+        skillElement = document.createElement("p")
+        skillElement.innerText = skill;
+        $("#skill-results").append(skillElement);
     });
 
 });
