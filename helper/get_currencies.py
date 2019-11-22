@@ -6,5 +6,4 @@ def get_currencies():
     url = 'https://www.freelancer-sandbox.com/api/projects/0.1/currencies/'
     
     response = requests.request("GET", url).json()
-    print(response)
     return response["result"]

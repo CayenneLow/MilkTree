@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         $("#job-card-" + numJobs + ' #budget-max').attr("name", numJobs + "-budget-max");
         $("#job-card-" + numJobs + ' #1-select-skills').prop("id", numJobs + "-select-skills");
         console.log("#job-card-" + numJobs + " #" + numJobs + "-select-skills");
-        $("#job-card-" + numJobs + " #" + numJobs + "-select-skills").select2();
+        $("#job-card-" + numJobs + " #" + numJobs + "-select-skills").select2({width:'style'});
         $("#job-card-" + numJobs + " #" + numJobs + "-select-skills").change(dropDown);
     }
     

@@ -44,7 +44,6 @@ def get_skill_id(skill, skills_result):
 
 @app.route('/')
 def index():
-    print(get_skills())
     if 'access_token' in session:
         username = session['access_token']
         return ('Logged in as ' + username + '<br>' + \
