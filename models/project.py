@@ -9,10 +9,10 @@ class Project:
         self.jobs = []
 
     def get_proj_id(self):
-        return self.id
+        return self.proj_id
 
     def set_proj_id(self, id):
-        self.id = id
+        self.proj_id = id
 
     def get_title(self):
         return self.title
