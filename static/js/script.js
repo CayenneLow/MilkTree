@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
     $("#new-job-button").on('click', addJobBox);
     
-    $("#" + numJobs + "-select-skills").select2({width:'style'});
+    $("[id$=select-skills").select2({width:'style'});
     
     $("#" + numJobs + "-select-skills").change(function(e) {
         dropDown(e);
@@ -12,8 +12,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
     function addJobBox() {
         let clone = cloneStatic.clone();
-        numJobs++;
+        numJobs = $("#job-list").children().length + 1;
         $("#job-list").append(clone);
+        //remove selected jobs
+        clone.find("[id$=select-skills]").select2({width:'style'});
+        clone.find("#skill-results").text(" ");
+        clone.find("#hidden-skills").val(" ");
+        clone.find("#role").val(" ");
+        clone.find("[name=skills]").val(0);
         //clone.appendTo($("#job-list"));
         clone.prop("id", `job-card-${numJobs}`);
         var jobCardId = "#job-card-" + numJobs;

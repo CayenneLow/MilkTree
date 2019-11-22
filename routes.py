@@ -104,10 +104,9 @@ def create_project(title="", desc="", location=""):
     else:
         project.set_location(location)
         system().add_project(project)
-        currency_result = get_currencies()
-        for currency in currency_result['currencies']:
-            currencies.append(currency['code'])
-
+    currency_result = get_currencies()
+    for currency in currency_result['currencies']:
+        currencies.append(currency['code'])
     skills_result = get_skills()
     for skill in skills_result:
         skill_names.append(skill['name'])
