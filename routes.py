@@ -16,13 +16,15 @@ def utility_functions():
 
 @app.route('/create-project', methods=['GET', 'POST'])
 def create_project(title="", desc="", location=""):
+    n_jobs = 0
     if (request.method == "POST"):
         title = request.form['title']
         desc = request.form['description']
         location = request.form['location']
-        print(request.form['1-role'])
+        jobs = []
+
 
     project = Project(title, desc)
     project.set_location(location)
 
-    return render_template('create_project.html', jobs = project.get_jobs())
+    return render_template('create_project.html', jobs = project.get_jobs(), njobs = n_jobs)
