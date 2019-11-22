@@ -40,12 +40,15 @@ def utility_functions():
 @app.route('/create-project', methods=['GET', 'POST'])
 def create_project(title="", desc="", location=""):
     n_jobs = 0
+    project = Project(title, desc)
+    project.set_location(location)
+    system().add_project(project)
+
     if (request.method == "POST"):
         title = request.form['title']
         desc = request.form['description']
         location = request.form['location']
         # Populate jobs for the project.
-        jobs = []
         for i in range(1, n_jobs):
             num_string = str(i)
             role = request.form[num_string + "-role"]
@@ -53,13 +56,9 @@ def create_project(title="", desc="", location=""):
             budget = request.form[num_string + "-budget-price"]
             curr = request.form[num_string + "-budget-currency"]
             # TODO: Add skills here
-            new_job = Job(i, role, job_desc, budget, curr)
-            jobs.append(new_job)
+            new_job = Job(i, role, job_desc, budget, curr) 
+            project.add_job(new_job)
         
-    project = Project(title, desc)
-    project.set_location(location)
-    project.set_jobs(jobs)
-    system().add_project(project)
     return render_template('create_project.html', jobs = project.get_jobs(), njobs = n_jobs)
 
 # Users who hit this endpoint will be redirected to the authorization prompt
