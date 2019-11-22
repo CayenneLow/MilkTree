@@ -3,7 +3,7 @@ from server import app
 import requests
 import json
 
-from models.Project import Project
+from models.project import Project
 from models.Job import Job
 from helper.post_job import post_job
 
