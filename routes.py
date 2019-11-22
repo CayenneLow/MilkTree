@@ -105,6 +105,7 @@ def create_project(title="", desc="", location=""):
             post_job(new_job)
             project.add_job(new_job)
             i += 1
+        return redirect(url_for("dashboard"))
 
     return render_template('create_project.html', jobs = project.get_jobs(), currencies=currencies, skills=skill_names, njobs = n_jobs)
 
