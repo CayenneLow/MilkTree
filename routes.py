@@ -18,7 +18,7 @@ advanced_scopes = '1 2'
 client_secret = '7e0b18744d57338e6cd80eb6f1de715bbdb13b73cac49cbf895506d621385f7f5d2a0d2b9b24d135be4a94a67050eef02f7925c578c3118a061cedb8dff25d1f'
 
 # slack stuff
-slack_oauth_token = "xoxp-833602236162-846395388917-833618611490-94c4763ea5731894a591ba7c8ba467f4"
+slack_oauth_token = "xoxp-833602236162-846395388917-848666645574-11fed6b7714cbb475c8cd5d8cce3b931"
 
 # Gets system.
 def system():
