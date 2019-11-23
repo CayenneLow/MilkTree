@@ -78,6 +78,7 @@ def create_project(title="", desc="", location=""):
         i = 1
         # Populate jobs for the project.
         for i in range(1, int(request.form['nJobs']) + 1):
+            print(str(i) + " of " + str(request.form['nJobs']) + "!\n")
             print("i: " + str(i) + ", len: " + str(len(request.form)) + "\n")
             num_string = str(i)
             role = request.form[num_string + "-role"]
