@@ -11,11 +11,11 @@ from helper.post_job import post_job
 # session = Session(oauth_token=2pMF6DNa7UUPSu9L83958IzrFBqWSp)
 
 oauth_uri = 'https://accounts.freelancer-sandbox.com/oauth/authorize'
-client_id = '16893251-7ef7-4c9c-8876-e7598f2e3569'
+client_id = 'e69b03c1-a50c-40e4-9365-ca6db485cd56 '
 redirect_uri = 'http://localhost:5000/authorized'
 prompt = 'select_account consent'
 advanced_scopes = '1 2'
-client_secret = 'ab7f65247142d1e36665020bb91dfad611b5152944b44c2e7a6ce8908356d67f1753a1544da4bc041715b50681688ec401d1e3dba9001420dc3e3f888a13332c'
+client_secret = '7e0b18744d57338e6cd80eb6f1de715bbdb13b73cac49cbf895506d621385f7f5d2a0d2b9b24d135be4a94a67050eef02f7925c578c3118a061cedb8dff25d1f'
 
 # slack stuff
 slack_oauth_token = "xoxp-833602236162-846395388917-833618611490-94c4763ea5731894a591ba7c8ba467f4"

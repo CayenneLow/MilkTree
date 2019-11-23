@@ -39,7 +39,7 @@
                     Add Job
                 </span>
                 {% if project.get_jobs() %}
-                <div class="card-deck w-100" id="job-list">
+                <div class="card-deck" id="job-list">
                     {% for job in project.get_jobs() %}
                     <div class="card w-100" id="job-card-{{loop.index}}">
                         <label for="jobs" class="card-header w-100">Job</label>
@@ -97,7 +97,7 @@
                     {% endfor %}
                 </div>
                 {% else %}
-                <div class="card-deck w-100" id="job-list">
+                <div class="card-deck" id="job-list">
                     <div class="card w-100" id="job-card-1">
                         <label for="jobs" class="card-header w-100">Job</label>
                         <input type="hidden" value="1" id="numJob" name="nJobs" />
