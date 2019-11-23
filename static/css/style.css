@@ -22,6 +22,11 @@ html, body {
     border-radius: 6px;
 }
 
+.btn-purple.btn-primary{
+    background: #3f0f3f;
+    border-color: #3f0f3f;
+}
+
 .projectsContainer{
     width:50%;
 }
