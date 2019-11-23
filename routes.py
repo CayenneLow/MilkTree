@@ -116,7 +116,7 @@ def create_project(title="", desc="", location=""):
         print(project)
     else:
         project.set_location(location)
-        system().add_project(project)
+        # system().add_project(project)
     for currency in currency_result['currencies']:
         currencies.append(currency['code'])
 
