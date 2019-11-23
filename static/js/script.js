@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         //remove selected jobs
         clone.find("[id$=select-skills]").select2({width:'style'});
         clone.find("#skill-results").text(" ");
-        clone.find("#hidden-skills").val(" ");
+        clone.find("#hidden-skills").val("|");
         clone.find("#role").val(" ");
         clone.find("[name=skills]").val(0);
         //clone.appendTo($("#job-list"));

@@ -89,7 +89,7 @@
                                         {% endfor %}
                                     </select>
                                     <input type="hidden" id="hidden-skills" name="{{loop.index}}-hidden-skills"
-                                        value="{{job.get_skills()[0]}}" />
+                                        value="|{{job.get_skills()[0]}}" />
                                 </li>
                             </div>
                         </ul>
