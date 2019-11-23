@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         //remove selected jobs
         clone.find("[id$=select-skills]").select2({width:'style'});
         clone.find("#skill-results").text(" ");
-        clone.find("#hidden-skills").val("|");
+        clone.find("#hidden-skills").val(" ");
         clone.find("#role").val(" ");
         clone.find("[name=skills]").val(0);
         //clone.appendTo($("#job-list"));
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         $(jobCardId + ' #budget-min').attr("name", numJobs + "-budget-min");
         $(jobCardId + ' #budget-max').attr("name", numJobs + "-budget-max");
         $(jobCardId + ' #hidden-skills').attr("name", numJobs + "-hidden-skills");
-        //$("#numJob").val(Number($("#numJob").val()) + 1);
+        $("#numJob").val(Number($("#numJob").val()) + 1);
         $("#job-card-" + numJobs + ' #currency').attr("name", numJobs + "-currency");
         $(jobCardId + '  #1-select-skills').prop("id", numJobs + "-select-skills");
         $(jobCardId + " #" + numJobs + "-select-skills").select2({width:'style'});
