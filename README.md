@@ -1,5 +1,5 @@
-# Luminary
-Crowd Funding Platform powered by Blockchain
+# SkillBox
+Webapp Solution to managing large scale projects on Freelancer, powered by Freelancer API
 
 ![logo](https://raw.githubusercontent.com/CayenneLow/SkillBox/master/static/images/logo.png)
 
