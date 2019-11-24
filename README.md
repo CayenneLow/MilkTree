@@ -15,9 +15,16 @@ Created By: Apurva Shukla, Low Khye Ean, Nicholas Duller, Selina Chua
 
 *Disclaimer: This is a Minimum Viable Product, therefore you are likely to run into bugs/errors*
 
+# GIF demonstration
+
+![gif1](readme/demo.gif)
+
 # Screenshots
+
 ![pic1](https://imgur.com/fuWrylN.png)
 
 ![pic2](https://imgur.com/ias2Wgt.png)
 
 ![pic3](https://imgur.com/Mr6Zpfx.png)
+
+
